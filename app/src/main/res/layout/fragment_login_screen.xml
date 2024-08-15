@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_background"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".Fragment.LoginScreenFragment">
+
+    <Button
+        android:id="@+id/buttonCocktails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_8"
+        android:background="@drawable/rounded_button"
+        android:text="@string/bttn_cock"
+        android:textColor="@color/text" />
+
+    <ImageButton
+        android:id="@+id/imageCocktails"
+        android:layout_width="@dimen/margin_72"
+        android:layout_height="@dimen/margin_72"
+        android:layout_marginBottom="@dimen/margin_12" />
+
+    <Button
+        android:id="@+id/buttonAlcoholDrinks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_12"
+        android:background="@drawable/rounded_button"
+        android:text="@string/bttn_alcohol_drink"
+        android:textColor="@color/text" />
+
+    <ImageButton
+        android:id="@+id/imageAlcoholDrinks"
+        android:layout_width="@dimen/margin_72"
+        android:layout_height="@dimen/margin_72"
+        android:layout_marginBottom="@dimen/margin_12"
+        tools:src="@tools:sample/avatars" />
+
+    <Button
+        android:id="@+id/buttonIngredients"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_12"
+        android:background="@drawable/rounded_button"
+        android:text="@string/ordinary_drink"
+        android:textColor="@color/text" />
+
+    <ImageButton
+        android:id="@+id/imageIngredients"
+        android:layout_width="@dimen/margin_72"
+        android:layout_height="@dimen/margin_72"
+        android:layout_marginBottom="@dimen/margin_12"
+        tools:src="@tools:sample/avatars" />
+
+    <Button
+        android:id="@+id/buttonDrinks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_12"
+        android:background="@drawable/rounded_button"
+        android:text="@string/popular_drink"
+        android:textColor="@color/text" />
+
+    <ImageButton
+        android:id="@+id/imageDrinks"
+        android:layout_width="@dimen/margin_72"
+        android:layout_height="@dimen/margin_72"
+        android:layout_marginBottom="@dimen/margin_12"
+        tools:src="@tools:sample/avatars" />
+
+    <Button
+        android:id="@+id/buttonGlass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_12"
+        android:background="@drawable/rounded_button"
+        android:text="@string/glass_cat"
+        android:textColor="@color/text" />
+
+    <ImageButton
+        android:id="@+id/imageNonAlcohol"
+        android:layout_width="@dimen/margin_72"
+        android:layout_height="@dimen/margin_72"
+        android:layout_marginBottom="@dimen/margin_16"
+        tools:src="@tools:sample/avatars" />
+</LinearLayout>
