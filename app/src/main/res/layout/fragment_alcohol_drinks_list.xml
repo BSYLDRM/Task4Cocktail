@@ -5,29 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background"
-    tools:context=".Fragment.Alcohol.AlcoholDrinksListFragment">
-
-    <EditText
-        android:id="@+id/editAlcoholDrinksSearch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_8"
-        android:layout_marginEnd="@dimen/margin_8"
-        android:hint="SEARCH"
-        android:inputType="text"
-        android:textColor="@color/text"
-        android:textSize="@dimen/font_size_small"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    tools:context=".fragment.alcohol.AlcoholDrinksListFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/alcohol_drinks_recyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_24"
-        android:layout_marginBottom="@dimen/margin_12"
+        android:layout_marginTop="@dimen/margin_16"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:layout_marginBottom="@dimen/margin_16"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editAlcoholDrinksSearch" />
+        app:layout_constraintTop_toTopOf="parent"
+ />
 </androidx.constraintlayout.widget.ConstraintLayout>

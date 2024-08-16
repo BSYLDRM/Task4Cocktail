@@ -1,12 +1,22 @@
 package com.example.cocktail.model
 
-import com.example.cocktail.data.*
+import com.example.cocktail.data.dataclass.FilterAlcohol
+import com.example.cocktail.data.dataclass.FilterCocktailGlass
+import com.example.cocktail.data.dataclass.FilterNonAlcohol
+import com.example.cocktail.data.dataclass.FilterOrdinaryDrink
+import com.example.cocktail.data.dataclass.GlassCategoryList
+import com.example.cocktail.data.dataclass.IngredientsCategoryList
+import com.example.cocktail.data.dataclass.ListCocktailByFirstLetter
+import com.example.cocktail.data.dataclass.LookupFullCocktailDetailsById
+import com.example.cocktail.data.dataclass.LookupIngredientsById
+import com.example.cocktail.data.dataclass.LookupRandomCocktail
+import com.example.cocktail.data.dataclass.SearchCocktailByName
+import com.example.cocktail.data.dataclass.SearchIngredientByName
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface CocktailApi {
-
     @GET("api/json/v1/1/search.php")
     suspend fun searchCocktailByName(@Query("s") name: String): Response<SearchCocktailByName>
 
@@ -46,5 +56,3 @@ interface CocktailApi {
     @GET("api/json/v1/1/list.php")
     suspend fun listIngredientCategories(@Query("i") listType: String): Response<IngredientsCategoryList>
 }
-
-

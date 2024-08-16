@@ -1,4 +1,4 @@
-package com.example.cocktail.Fragment.Cocktail
+package com.example.cocktail.fragment.cocktail
 
 import android.os.Bundle
 import android.text.Editable
@@ -9,15 +9,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.cocktail.data.AdapterType
-import com.example.cocktail.data.CocktailDrink
-import com.example.cocktail.data.GenericAdapter
+import com.example.cocktail.data.adapter.AdapterType
+import com.example.cocktail.data.dataclass.CocktailDrink
+import com.example.cocktail.data.adapter.GenericAdapter
 import com.example.cocktail.databinding.FragmentCocktailListBinding
 import com.example.cocktail.viewModel.CocktailViewModel
 
 class FragmentCocktailList : Fragment() {
-
     private var _binding: FragmentCocktailListBinding? = null
     private val binding get() = _binding!!
 
@@ -27,7 +25,7 @@ class FragmentCocktailList : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentCocktailListBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -38,15 +36,13 @@ class FragmentCocktailList : Fragment() {
         setupRecyclerView()
         observeViewModel()
         setupSearchFunctionality()
+        setupScrollListener()
     }
 
     private fun setupRecyclerView() {
-        binding.cocktailListRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-        cocktailAdapter =
-            GenericAdapter(emptyList(), AdapterType.COCKTAIL) {/* Placeholder for onItemClick */ }
+        cocktailAdapter = GenericAdapter(emptyList(), AdapterType.COCKTAIL) {}
         binding.cocktailListRecyclerView.adapter = cocktailAdapter
     }
-
 
     private fun observeViewModel() {
         cocktailViewModel.cocktailList.observe(viewLifecycleOwner) { cocktails ->
@@ -54,7 +50,7 @@ class FragmentCocktailList : Fragment() {
                 val cocktail = item as CocktailDrink
                 cocktailViewModel.selectCocktail(cocktail)
                 val action =
-                    FragmentCocktailListDirections.actionCocktailListFragmentToCocktailDetailFragment(
+                    FragmentCocktailListDirections.actionFragmentCocktailListToCocktailDetailFragment(
                         cocktail.idDrink
                     )
                 findNavController().navigate(action)
@@ -74,6 +70,16 @@ class FragmentCocktailList : Fragment() {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         })
+    }
+
+    private fun setupScrollListener() {
+        binding.nestedScrollView.setOnScrollChangeListener { _, _, scrollY, _, _ ->
+            if (scrollY > 0) {
+                binding.editSearch.visibility = View.GONE
+            } else {
+                binding.editSearch.visibility = View.VISIBLE
+            }
+        }
     }
 
     override fun onDestroyView() {

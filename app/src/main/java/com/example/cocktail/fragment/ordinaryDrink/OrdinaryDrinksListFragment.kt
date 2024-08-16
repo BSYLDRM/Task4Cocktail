@@ -1,4 +1,4 @@
-package com.example.cocktail.Fragment.OrdinaryDrink
+package com.example.cocktail.fragment.ordinaryDrink
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,10 +8,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.cocktail.data.AdapterType
-import com.example.cocktail.data.GenericAdapter
-import com.example.cocktail.data.OrdinaryDrink
+import com.example.cocktail.data.adapter.AdapterType
+import com.example.cocktail.data.adapter.GenericAdapter
+import com.example.cocktail.data.dataclass.OrdinaryDrink
 import com.example.cocktail.databinding.FragmentOrdinaryDrinksListBinding
 import com.example.cocktail.viewModel.CocktailViewModel
 
@@ -38,21 +37,18 @@ class OrdinaryDrinksListFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        binding.recyclerRowOrdinaryDrinks.layoutManager = LinearLayoutManager(requireContext())
-
         ordinaryDrinkAdapter = GenericAdapter(
             itemList = mutableListOf(),
             adapterType = AdapterType.ORDINARY_DRINK
         ) { item ->
             if (item is OrdinaryDrink) {
                 val action =
-                    OrdinaryDrinksListFragmentDirections.actionOrdinaryDrinkToOrdinaryDrinkDetailFragment(
+                    OrdinaryDrinksListFragmentDirections.actionOrdinaryDrinksListFragmentToOrdinaryDrinksDetailFragment(
                         item.idDrink
                     )
                 findNavController().navigate(action)
             }
         }
-
         binding.recyclerRowOrdinaryDrinks.adapter = ordinaryDrinkAdapter
     }
 
@@ -60,7 +56,6 @@ class OrdinaryDrinksListFragment : Fragment() {
         cocktailViewModel.ordinaryDrinks.observe(viewLifecycleOwner, Observer { ordinaryDrinks ->
             ordinaryDrinkAdapter.updateItems(ordinaryDrinks)
         })
-
         cocktailViewModel.fetchOrdinaryDrinks()
     }
 

@@ -12,4 +12,8 @@ object CocktailRetrofit {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
+
+    fun createApiService(): CocktailApi {
+        return retrofit.create(CocktailApi::class.java)
+    }
 }

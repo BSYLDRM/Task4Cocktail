@@ -5,9 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background"
-    tools:context=".Fragment.Alcohol.AlcoholDetailDrinksFragment">
-
-
+    tools:context=".fragment.alcohol.AlcoholDetailDrinksFragment">
     <ImageView
         android:id="@+id/imageViewAlcohol"
         android:layout_width="@dimen/margin_300"

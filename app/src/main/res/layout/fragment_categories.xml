@@ -5,17 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background"
-    tools:context=".fragment.ordinaryDrink.OrdinaryDrinksListFragment">
-
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".fragment.CategoriesFragment">
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerRowOrdinaryDrinks"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_16"
-        android:layout_marginBottom="@dimen/margin_16"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="@dimen/margin_16"
+        android:layout_marginStart="@dimen/margin_16"
+        android:layout_marginEnd="@dimen/margin_16"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:id="@+id/recyclerCategories"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

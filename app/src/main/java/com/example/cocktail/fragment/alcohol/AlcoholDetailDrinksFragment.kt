@@ -1,4 +1,4 @@
-package com.example.cocktail.Fragment.Alcohol
+package com.example.cocktail.fragment.alcohol
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,9 +9,8 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.cocktail.databinding.FragmentAlcoholDetailBinding
-import com.example.cocktail.data.CocktailDrink
+import com.example.cocktail.data.dataclass.CocktailDrink
 import com.example.cocktail.viewModel.CocktailViewModel
-
 
 class AlcoholDetailDrinksFragment : Fragment() {
     private var _binding: FragmentAlcoholDetailBinding? = null
@@ -39,6 +38,7 @@ class AlcoholDetailDrinksFragment : Fragment() {
         cocktailViewModel.fetchCocktailDetails(cocktailId)
     }
 
+
     private fun setupObservers() {
         cocktailViewModel.selectedCocktail.observe(viewLifecycleOwner) { cocktail ->
             updateUI(cocktail)
@@ -59,5 +59,3 @@ class AlcoholDetailDrinksFragment : Fragment() {
         _binding = null
     }
 }
-
-

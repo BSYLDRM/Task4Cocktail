@@ -1,4 +1,4 @@
-package com.example.cocktail.data
+package com.example.cocktail.data.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,14 +8,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.cocktail.R
-
-enum class AdapterType {
-    COCKTAIL,
-    ALCOHOLIC,
-    ORDINARY_DRINK,
-    RANDOM,
-    GLASS_CATEGORIES
-}
+import com.example.cocktail.data.dataclass.CocktailDrink
+import com.example.cocktail.data.dataclass.GlassListCategoryDrink
+import com.example.cocktail.data.dataclass.OrdinaryDrink
 
 class GenericAdapter(
     private var itemList: List<Any>,
@@ -46,7 +41,7 @@ class GenericAdapter(
             }
 
             AdapterType.ALCOHOLIC -> {
-                if (item is AlcoholDrink) {
+                if (item is CocktailDrink) {
                     holder.textView.text = item.strDrink
                     Glide.with(holder.itemView.context)
                         .load(item.strDrinkThumb)
@@ -78,7 +73,7 @@ class GenericAdapter(
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val imageView: ImageView = itemView.findViewById(R.id.imageButtonRecyclerRow)
+        val imageView: ImageView = itemView.findViewById(R.id.imageRecyclerRow)
         val textView: TextView = itemView.findViewById(R.id.textRecyclerRow)
 
         init {
@@ -87,5 +82,4 @@ class GenericAdapter(
             }
         }
     }
-
 }
