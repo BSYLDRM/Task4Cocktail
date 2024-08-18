@@ -7,26 +7,31 @@
     android:background="@drawable/gradient_background"
     tools:context=".fragment.cocktail.CocktailDetailFragment">
 
+    <include
+        android:id="@+id/layout"
+        layout="@layout/home_icon" />
 
     <ImageView
         android:id="@+id/imageViewCocktailDetail"
         android:layout_width="@dimen/margin_300"
         android:layout_height="@dimen/margin_300"
-        android:layout_marginTop="@dimen/margin_24"
+        android:layout_marginTop="@dimen/margin_8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layout"
         tools:src="@tools:sample/avatars" />
 
     <TextView
         android:id="@+id/tvCocktailDetailName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_8"
         android:textColor="@color/text"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageViewCocktailDetail" />
+        app:layout_constraintTop_toBottomOf="@id/imageViewCocktailDetail"
+        tools:text="text" />
 
     <TextView
         android:id="@+id/textViewCocktailDetailIng"

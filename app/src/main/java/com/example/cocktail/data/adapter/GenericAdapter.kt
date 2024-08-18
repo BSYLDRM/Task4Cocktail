@@ -61,7 +61,7 @@ class GenericAdapter(
             AdapterType.GLASS_CATEGORIES -> {
                 if (item is GlassListCategoryDrink) {
                     holder.textView.text = item.strGlass
-                    holder.imageView.visibility = View.GONE // Görseli sakla, sadece metin göster
+                    holder.imageView.visibility = View.GONE
                 }
             }
 

@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import com.example.cocktail.R
 import com.example.cocktail.data.adapter.AdapterType
 import com.example.cocktail.data.adapter.GenericAdapter
 import com.example.cocktail.data.dataclass.OrdinaryDrink
@@ -34,6 +35,14 @@ class OrdinaryDrinksListFragment : Fragment() {
 
         setupRecyclerView()
         observeViewModel()
+        setupHomeIcon()
+    }
+
+    private fun setupHomeIcon() {
+        val homeIcon: View = binding.root.findViewById(R.id.homeIcon)
+        homeIcon.setOnClickListener {
+            findNavController().navigate(R.id.categoriesFragment)
+        }
     }
 
     private fun setupRecyclerView() {

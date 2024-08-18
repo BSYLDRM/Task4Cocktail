@@ -4,7 +4,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="start_color">#80AFB5 </color>
     <color name="end_color">#B5CBCD</color>
-    <color name="text">#444545</color>
+    <color name="text">#FFFFFFFF</color>
     <color name="recycler_row">#728F93</color>
     <color name="btn_background">#B0B8B9</color>
 </resources>

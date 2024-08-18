@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.example.cocktail.R
 import com.example.cocktail.data.adapter.AdapterType
 import com.example.cocktail.data.dataclass.CocktailDrink
 import com.example.cocktail.data.adapter.GenericAdapter
@@ -32,11 +33,10 @@ class FragmentCocktailList : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         setupRecyclerView()
         observeViewModel()
         setupSearchFunctionality()
-        setupScrollListener()
+        setupHomeIcon()
     }
 
     private fun setupRecyclerView() {
@@ -71,14 +71,10 @@ class FragmentCocktailList : Fragment() {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         })
     }
-
-    private fun setupScrollListener() {
-        binding.nestedScrollView.setOnScrollChangeListener { _, _, scrollY, _, _ ->
-            if (scrollY > 0) {
-                binding.editSearch.visibility = View.GONE
-            } else {
-                binding.editSearch.visibility = View.VISIBLE
-            }
+    private fun setupHomeIcon() {
+        val homeIcon: View = binding.root.findViewById(R.id.homeIcon)
+        homeIcon.setOnClickListener {
+            findNavController().navigate(R.id.categoriesFragment)
         }
     }
 

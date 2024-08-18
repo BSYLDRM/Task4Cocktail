@@ -6,14 +6,19 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background"
     tools:context=".fragment.alcohol.AlcoholDetailDrinksFragment">
+
+    <include
+        android:id="@+id/layout"
+        layout="@layout/home_icon" />
+
     <ImageView
         android:id="@+id/imageViewAlcohol"
         android:layout_width="@dimen/margin_300"
         android:layout_height="@dimen/margin_300"
-        android:layout_marginTop="@dimen/margin_24"
+        android:layout_marginTop="@dimen/margin_8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layout"
         tools:src="@tools:sample/avatars" />
 
     <TextView

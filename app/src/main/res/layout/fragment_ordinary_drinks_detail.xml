@@ -11,10 +11,10 @@
         android:id="@+id/imageViewOrdinary"
         android:layout_width="@dimen/margin_300"
         android:layout_height="@dimen/margin_300"
-        android:layout_marginTop="@dimen/margin_24"
+        android:layout_marginTop="@dimen/margin_8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layout"
         tools:src="@tools:sample/avatars" />
 
     <TextView
@@ -40,4 +40,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textViewOrdinaryName"
         tools:text="text size" />
+
+    <include
+        android:id="@+id/layout"
+        layout="@layout/home_icon" />
 </androidx.constraintlayout.widget.ConstraintLayout>

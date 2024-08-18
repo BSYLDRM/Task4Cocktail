@@ -6,8 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
+import com.example.cocktail.R
 import com.example.cocktail.data.dataclass.CocktailDrink
 import com.example.cocktail.databinding.FragmentPopularDrinksDetailBinding
 import com.example.cocktail.viewModel.CocktailViewModel
@@ -32,6 +34,14 @@ class PopularDrinksDetailFragment : Fragment() {
         val cocktailId = args.cocktail
         setupObservers()
         fetchCocktailDetails(cocktailId)
+        fetchHomeIcon()
+    }
+
+    private fun fetchHomeIcon() {
+        val homeIcon: View = binding.root.findViewById(R.id.homeIcon)
+        homeIcon.setOnClickListener {
+            findNavController().navigate(R.id.categoriesFragment)
+        }
     }
 
     private fun fetchCocktailDetails(cocktailId: String) {

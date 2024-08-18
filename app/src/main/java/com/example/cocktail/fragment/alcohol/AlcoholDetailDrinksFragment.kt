@@ -5,9 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
+import com.example.cocktail.R
 import com.example.cocktail.databinding.FragmentAlcoholDetailBinding
 import com.example.cocktail.data.dataclass.CocktailDrink
 import com.example.cocktail.viewModel.CocktailViewModel
@@ -32,12 +35,19 @@ class AlcoholDetailDrinksFragment : Fragment() {
         val cocktailId = args.cocktail
         setupObservers()
         fetchCocktailDetails(cocktailId)
+        fetchHomeIcon()
+    }
+
+    private fun fetchHomeIcon() {
+        val homeIcon: ImageView = binding.root.findViewById(R.id.homeIcon)
+        homeIcon.setOnClickListener {
+            findNavController().navigate(R.id.categoriesFragment)
+        }
     }
 
     private fun fetchCocktailDetails(cocktailId: String) {
         cocktailViewModel.fetchCocktailDetails(cocktailId)
     }
-
 
     private fun setupObservers() {
         cocktailViewModel.selectedCocktail.observe(viewLifecycleOwner) { cocktail ->

@@ -6,8 +6,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.cocktail.data.dataclass.Categories
 import com.example.cocktail.databinding.RecylerCotegoriesItemBinding
-
-
 class CategoriesAdapter(
     private val categoriesList: List<Categories>,
     private val onItemClick: (Categories) -> Unit
