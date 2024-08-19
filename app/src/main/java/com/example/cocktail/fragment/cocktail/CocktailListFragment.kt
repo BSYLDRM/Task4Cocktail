@@ -69,6 +69,15 @@ class FragmentCocktailList : Fragment() {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         })
+        binding.editSearch.setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                binding.editSearch.hint = ""
+            } else {
+                if (binding.editSearch.text.isEmpty()) {
+                    binding.editSearch.hint = getString(R.string.hint)
+                }
+            }
+        }
     }
     private fun setupHomeIcon() {
         val homeIcon: View = binding.root.findViewById(R.id.homeIcon)
