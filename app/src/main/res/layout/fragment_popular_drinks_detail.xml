@@ -38,7 +38,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textViewPopularName"
-        tools:text="TextView" />
+        tools:text="TextView"
+        android:textSize="@dimen/font_size"/>
 
     <include
         android:id="@+id/layout"

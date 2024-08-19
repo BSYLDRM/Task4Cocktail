@@ -67,54 +67,12 @@ class CocktailViewModel(application: Application) : AndroidViewModel(application
         }
     }
 
-    fun fetchRandomCocktail() {
-        viewModelScope.launch {
-            DataFetcher.fetchData(
-                apiCall = { apiService.lookupRandomCocktail() },
-                onSuccess = { response -> _randomCocktail.value = response?.drinks?.firstOrNull() }
-            )
-        }
-    }
-
-    fun fetchCategories() {
-        val listValue = getApplication<Application>().getString(R.string.view_list)
-        viewModelScope.launch {
-            DataFetcher.fetchData(
-                apiCall = { apiService.listCategories(listValue) },
-                onSuccess = { response -> _categories.value = response?.drinks ?: emptyList() }
-            )
-        }
-    }
-
     fun fetchGlassCategories() {
         val listValue = getApplication<Application>().getString(R.string.view_list)
         viewModelScope.launch {
             DataFetcher.fetchData(
                 apiCall = { apiService.listGlassCategories(listValue) },
                 onSuccess = { response -> _glassCategories.value = response?.drinks ?: emptyList() }
-            )
-        }
-    }
-
-    fun fetchIngredientCategories() {
-        val listValue = getApplication<Application>().getString(R.string.view_list)
-        viewModelScope.launch {
-            DataFetcher.fetchData(
-                apiCall = { apiService.listIngredientCategories(listValue) },
-                onSuccess = { response ->
-                    _ingredientCategories.value = response?.drinks ?: emptyList()
-                }
-            )
-        }
-    }
-
-    fun fetchIngredientByName(ingredient: String) {
-        viewModelScope.launch {
-            DataFetcher.fetchData(
-                apiCall = { apiService.searchIngredientByName(ingredient) },
-                onSuccess = { response ->
-                    _ingredientList.value = response?.ingredients ?: emptyList()
-                }
             )
         }
     }
@@ -130,19 +88,6 @@ class CocktailViewModel(application: Application) : AndroidViewModel(application
             )
         }
     }
-
-    fun fetchNonAlcoholicCocktails() {
-        val nonAlcoholicValue = getApplication<Application>().getString(R.string.view_non_alcoholic)
-        viewModelScope.launch {
-            DataFetcher.fetchData(
-                apiCall = { apiService.filterByNonAlcohol(nonAlcoholicValue) },
-                onSuccess = { response ->
-                    _filteredCocktails.value = response?.drinks ?: emptyList()
-                }
-            )
-        }
-    }
-
     fun fetchRandomCocktails() {
         viewModelScope.launch {
             val cocktails = mutableListOf<CocktailDrink>()
