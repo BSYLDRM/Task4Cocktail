@@ -1,31 +1,33 @@
-package com.example.cocktail.fragment.cocktail
+package com.example.cocktail.fragment
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.cocktail.R
 import com.example.cocktail.data.dataclass.CocktailDrink
-import com.example.cocktail.databinding.FragmentCocktailDetailBinding
+import com.example.cocktail.databinding.FragmentDetailBinding
 import com.example.cocktail.viewModel.CocktailViewModel
 
-class CocktailDetailFragment : Fragment() {
-    private var _binding: FragmentCocktailDetailBinding? = null
+
+class DetailFragment : Fragment() {
+
+    private var _binding: FragmentDetailBinding? = null
     private val binding get() = _binding!!
     private val cocktailViewModel: CocktailViewModel by viewModels()
-    private val args: CocktailDetailFragmentArgs by navArgs()
+    private val args: DetailFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentCocktailDetailBinding.inflate(inflater, container, false)
+        _binding = FragmentDetailBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -36,7 +38,8 @@ class CocktailDetailFragment : Fragment() {
         fetchCocktailDetails(cocktailId)
         fetchHomeIcon()
     }
-    private fun fetchHomeIcon(){
+
+    private fun fetchHomeIcon() {
         val homeIcon: ImageView = binding.root.findViewById(R.id.homeIcon)
         homeIcon.setOnClickListener {
             findNavController().navigate(R.id.categoriesFragment)
@@ -54,12 +57,12 @@ class CocktailDetailFragment : Fragment() {
     }
 
     private fun updateUI(cocktail: CocktailDrink) {
-        binding.tvCocktailDetailName.text = cocktail.strDrink
-        binding.textViewCocktailDetailIng.text =
-            cocktail.getIngredientsWithMeasurements().joinToString(separator = " ")
+        binding.tvDetailName.text = cocktail.strDrink
+        binding.textViewDetailIng.text =
+            cocktail.getIngredientsWithMeasurements().joinToString(separator = "\n")
         Glide.with(this)
             .load(cocktail.strDrinkThumb)
-            .into(binding.imageViewCocktailDetail)
+            .into(binding.imageViewDetail)
     }
 
     override fun onDestroyView() {

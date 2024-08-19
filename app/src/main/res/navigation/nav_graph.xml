@@ -4,11 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/categoriesFragment">
+
+
     <fragment
         android:id="@+id/categoriesFragment"
         android:name="com.example.cocktail.fragment.CategoriesFragment"
         android:label="fragment_categories"
-        tools:layout="@layout/fragment_categories">
+        tools:layout="@layout/fragment_categories" >
         <action
             android:id="@+id/action_categoriesFragment_to_fragmentCocktailList"
             app:destination="@id/fragmentCocktailList" />
@@ -28,80 +30,88 @@
     <fragment
         android:id="@+id/fragmentCocktailList"
         android:name="com.example.cocktail.fragment.cocktail.FragmentCocktailList"
-        android:label="FragmentCocktailList">
+        android:label="FragmentCocktailList" >
         <action
-            android:id="@+id/action_fragmentCocktailList_to_cocktailDetailFragment"
-            app:destination="@id/cocktailDetailFragment" />
+            android:id="@+id/action_fragmentCocktailList_to_detailFragment"
+            app:destination="@id/detailFragment" />
     </fragment>
+    <!--
     <fragment
         android:id="@+id/alcoholDrinksListFragment"
         android:name="com.example.cocktail.fragment.alcohol.AlcoholDrinksListFragment"
         android:label="fragment_alcohol_drinks_list"
-        tools:layout="@layout/fragment_alcohol_drinks_list">
+        tools:layout="@layout/fragment_alcohol_drinks_list" >
         <action
-            android:id="@+id/action_alcoholDrinksListFragment_to_alcoholDetailDrinksFragment"
-            app:destination="@id/alcoholDetailDrinksFragment" />
+            android:id="@+id/action_alcoholDrinksListFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
     </fragment>
     <fragment
         android:id="@+id/ordinaryDrinksListFragment"
         android:name="com.example.cocktail.fragment.ordinaryDrink.OrdinaryDrinksListFragment"
         android:label="fragment_ordinary_drinks_list"
-        tools:layout="@layout/fragment_ordinary_drinks_list">
+        tools:layout="@layout/fragment_ordinary_drinks_list" >
         <action
-            android:id="@+id/action_ordinaryDrinksListFragment_to_ordinaryDrinksDetailFragment"
-            app:destination="@id/ordinaryDrinksDetailFragment" />
+            android:id="@+id/action_ordinaryDrinksListFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
     </fragment>
     <fragment
         android:id="@+id/popularDrinksListFragment"
         android:name="com.example.cocktail.fragment.popularDrinks.PopularDrinksListFragment"
         android:label="fragment_popular_drinks"
-        tools:layout="@layout/fragment_popular_drinks">
+        tools:layout="@layout/fragment_popular_drinks" >
         <action
-            android:id="@+id/action_popularDrinksListFragment_to_popularDrinksDetailFragment"
-            app:destination="@id/popularDrinksDetailFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/cocktailDetailFragment"
-        android:name="com.example.cocktail.fragment.cocktail.CocktailDetailFragment"
-        android:label="fragment_cocktail_detail"
-        tools:layout="@layout/fragment_cocktail_detail">
-        />
-        <argument
-            android:name="cocktail"
-            app:argType="string" />
-    </fragment>
-    <fragment
-        android:id="@+id/alcoholDetailDrinksFragment"
-        android:name="com.example.cocktail.fragment.alcohol.AlcoholDetailDrinksFragment"
-        android:label="fragment_alcohol_detail"
-        tools:layout="@layout/fragment_alcohol_detail">/>
-        <argument
-            android:name="cocktail"
-            app:argType="string" />
+            android:id="@+id/action_popularDrinksListFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
     </fragment>
     <fragment
         android:id="@+id/glassFragment"
         android:name="com.example.cocktail.fragment.glassCategories.GlassFragment"
         android:label="fragment_glass"
         tools:layout="@layout/fragment_glass" />
+    -->
     <fragment
-        android:id="@+id/ordinaryDrinksDetailFragment"
-        android:name="com.example.cocktail.fragment.ordinaryDrink.OrdinaryDrinksDetailFragment"
-        android:label="fragment_ordinary_drinks_detail"
-        tools:layout="@layout/fragment_ordinary_drinks_detail">
-        />
+        android:id="@+id/detailFragment"
+        android:name="com.example.cocktail.fragment.DetailFragment"
+        android:label="fragment_detail"
+        tools:layout="@layout/fragment_detail" >
         <argument
             android:name="cocktail"
             app:argType="string" />
     </fragment>
     <fragment
-        android:id="@+id/popularDrinksDetailFragment"
-        android:name="com.example.cocktail.fragment.popularDrinks.PopularDrinksDetailFragment"
-        android:label="fragment_popular_drinks_detail"
-        tools:layout="@layout/fragment_popular_drinks_detail">
-        />
-        <argument
-            android:name="cocktail"
-            app:argType="string" />
+        android:id="@+id/alcoholDrinksListFragment"
+        android:name="com.example.cocktail.fragment.alcohol.AlcoholDrinksListFragment"
+        android:label="fragment_alcohol_drinks_list"
+        tools:layout="@layout/fragment_alcohol_drinks_list" >
+        <action
+            android:id="@+id/action_alcoholDrinksListFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ordinaryDrinksListFragment"
+        android:name="com.example.cocktail.fragment.ordinaryDrink.OrdinaryDrinksListFragment"
+        android:label="fragment_ordinary_drinks_list"
+        tools:layout="@layout/fragment_ordinary_drinks_list" >
+        <action
+            android:id="@+id/action_ordinaryDrinksListFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/popularDrinksListFragment"
+        android:name="com.example.cocktail.fragment.popularDrinks.PopularDrinksListFragment"
+        android:label="fragment_popular_drinks"
+        tools:layout="@layout/fragment_popular_drinks" >
+        <action
+            android:id="@+id/action_popularDrinksListFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/glassFragment"
+        android:name="com.example.cocktail.fragment.glassCategories.GlassFragment"
+        android:label="fragment_glass"
+        tools:layout="@layout/fragment_glass" >
+        <action
+            android:id="@+id/action_glassFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
     </fragment>
 </navigation>

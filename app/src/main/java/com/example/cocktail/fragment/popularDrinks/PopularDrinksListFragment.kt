@@ -12,6 +12,7 @@ import com.example.cocktail.data.adapter.AdapterType
 import com.example.cocktail.data.dataclass.CocktailDrink
 import com.example.cocktail.data.adapter.GenericAdapter
 import com.example.cocktail.databinding.FragmentPopularDrinksBinding
+
 import com.example.cocktail.viewModel.CocktailViewModel
 
 class PopularDrinksListFragment : Fragment() {
@@ -47,7 +48,7 @@ class PopularDrinksListFragment : Fragment() {
         popularAdapter = GenericAdapter(emptyList(), AdapterType.COCKTAIL) { item ->
             if (item is CocktailDrink) {
                 val action =
-                    PopularDrinksListFragmentDirections.actionPopularDrinksListFragmentToPopularDrinksDetailFragment(
+                    PopularDrinksListFragmentDirections.actionPopularDrinksListFragmentToDetailFragment(
                         item.idDrink
                     )
                 findNavController().navigate(action)

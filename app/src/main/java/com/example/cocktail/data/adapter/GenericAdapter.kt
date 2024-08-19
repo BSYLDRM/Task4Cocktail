@@ -17,6 +17,7 @@ class GenericAdapter(
     private val adapterType: AdapterType,
     private val onItemClick: (Any) -> Unit
 ) : RecyclerView.Adapter<GenericAdapter.ViewHolder>() {
+
     fun updateItems(newItems: List<Any>) {
         itemList = newItems
         notifyDataSetChanged()
@@ -30,42 +31,7 @@ class GenericAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = itemList[position]
-        when (adapterType) {
-            AdapterType.COCKTAIL, AdapterType.RANDOM -> {
-                if (item is CocktailDrink) {
-                    holder.textView.text = item.strDrink
-                    Glide.with(holder.itemView.context)
-                        .load(item.strDrinkThumb)
-                        .into(holder.imageView)
-                }
-            }
-
-            AdapterType.ALCOHOLIC -> {
-                if (item is CocktailDrink) {
-                    holder.textView.text = item.strDrink
-                    Glide.with(holder.itemView.context)
-                        .load(item.strDrinkThumb)
-                        .into(holder.imageView)
-                }
-            }
-
-            AdapterType.ORDINARY_DRINK -> {
-                if (item is OrdinaryDrink) {
-                    holder.textView.text = item.strDrink
-                    Glide.with(holder.itemView.context)
-                        .load(item.strDrinkThumb)
-                        .into(holder.imageView)
-                }
-            }
-
-            AdapterType.GLASS_CATEGORIES -> {
-                if (item is GlassListCategoryDrink) {
-                    holder.textView.text = item.strGlass
-                    holder.imageView.visibility = View.GONE
-                }
-            }
-
-        }
+        holder.bind(item)
     }
 
     override fun getItemCount(): Int {
@@ -73,13 +39,45 @@ class GenericAdapter(
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val imageView: ImageView = itemView.findViewById(R.id.imageRecyclerRow)
-        val textView: TextView = itemView.findViewById(R.id.textRecyclerRow)
+        private val imageView: ImageView = itemView.findViewById(R.id.imageRecyclerRow)
+        private val textView: TextView = itemView.findViewById(R.id.textRecyclerRow)
 
         init {
             itemView.setOnClickListener {
                 onItemClick(itemList[adapterPosition])
             }
+        }
+
+        fun bind(item: Any) {
+            when (adapterType) {
+                AdapterType.COCKTAIL, AdapterType.RANDOM, AdapterType.ALCOHOLIC -> {
+                    if (item is CocktailDrink) {
+                        bindTextAndImage(item.strDrink, item.strDrinkThumb)
+                    }
+                }
+                AdapterType.ORDINARY_DRINK -> {
+                    if (item is OrdinaryDrink) {
+                        bindTextAndImage(item.strDrink, item.strDrinkThumb)
+                    }
+                }
+                AdapterType.GLASS_CATEGORIES -> {
+                    if (item is GlassListCategoryDrink) {
+                        bindText(item.strGlass)
+                    }
+                }
+            }
+        }
+
+        private fun bindTextAndImage(text: String, imageUrl: String) {
+            textView.text = text
+            Glide.with(itemView.context)
+                .load(imageUrl)
+                .into(imageView)
+        }
+
+        private fun bindText(text: String) {
+            textView.text = text
+            imageView.visibility = View.GONE
         }
     }
 }

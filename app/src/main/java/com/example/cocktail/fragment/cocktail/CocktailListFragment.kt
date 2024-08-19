@@ -40,22 +40,21 @@ class FragmentCocktailList : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        cocktailAdapter = GenericAdapter(emptyList(), AdapterType.COCKTAIL) {}
+        cocktailAdapter = GenericAdapter(emptyList(), AdapterType.COCKTAIL) {item ->
+            val cocktail = item as CocktailDrink
+            cocktailViewModel.selectCocktail(cocktail)
+            val action =
+                FragmentCocktailListDirections.actionFragmentCocktailListToDetailFragment(
+                    cocktail.idDrink
+                )
+            findNavController().navigate(action)
+        }
         binding.cocktailListRecyclerView.adapter = cocktailAdapter
     }
 
     private fun observeViewModel() {
         cocktailViewModel.cocktailList.observe(viewLifecycleOwner) { cocktails ->
-            cocktailAdapter = GenericAdapter(cocktails, AdapterType.COCKTAIL) { item ->
-                val cocktail = item as CocktailDrink
-                cocktailViewModel.selectCocktail(cocktail)
-                val action =
-                    FragmentCocktailListDirections.actionFragmentCocktailListToCocktailDetailFragment(
-                        cocktail.idDrink
-                    )
-                findNavController().navigate(action)
-            }
-            binding.cocktailListRecyclerView.adapter = cocktailAdapter
+            cocktailAdapter.updateItems(cocktails)
         }
         cocktailViewModel.fetchCocktailsByName("")
     }

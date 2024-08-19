@@ -52,7 +52,7 @@ class OrdinaryDrinksListFragment : Fragment() {
         ) { item ->
             if (item is OrdinaryDrink) {
                 val action =
-                    OrdinaryDrinksListFragmentDirections.actionOrdinaryDrinksListFragmentToOrdinaryDrinksDetailFragment(
+                    OrdinaryDrinksListFragmentDirections.actionOrdinaryDrinksListFragmentToDetailFragment(
                         item.idDrink
                     )
                 findNavController().navigate(action)

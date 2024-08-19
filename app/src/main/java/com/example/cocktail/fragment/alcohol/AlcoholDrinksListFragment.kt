@@ -1,8 +1,5 @@
 package com.example.cocktail.fragment.alcohol
-
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -17,8 +14,8 @@ import com.example.cocktail.databinding.FragmentAlcoholDrinksListBinding
 import com.example.cocktail.viewModel.CocktailViewModel
 
 
-class AlcoholDrinksListFragment : Fragment() {
-    private var _binding: FragmentAlcoholDrinksListBinding? = null
+ class AlcoholDrinksListFragment : Fragment() {
+   private var _binding: FragmentAlcoholDrinksListBinding? = null
     private val binding get() = _binding!!
     private val cocktailViewModel: CocktailViewModel by activityViewModels()
     private lateinit var alcoholAdapter: GenericAdapter
@@ -48,7 +45,7 @@ class AlcoholDrinksListFragment : Fragment() {
         alcoholAdapter = GenericAdapter(emptyList(), AdapterType.ALCOHOLIC) { item ->
             val cocktail = item as CocktailDrink
             val action =
-                AlcoholDrinksListFragmentDirections.actionAlcoholDrinksListFragmentToAlcoholDetailDrinksFragment(
+              AlcoholDrinksListFragmentDirections.actionAlcoholDrinksListFragmentToDetailFragment(
                     cocktail.idDrink
                 )
             findNavController().navigate(action)
