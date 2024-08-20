@@ -66,17 +66,6 @@ data class AlcoholDrink(
     @SerializedName("strDrinkThumb") val strDrinkThumb: String,
     @SerializedName("idDrink") val idDrink: String
 ) : Serializable
-
-data class FilterNonAlcohol(
-    @SerializedName("drinks") val drinks: List<CocktailDrink>
-) : Serializable
-
-data class NonAlcoholDrink(
-    @SerializedName("strDrink") val strDrink: String,
-    @SerializedName("strDrinkThumb") val strDrinkThumb: String,
-    @SerializedName("idDrink") val idDrink: String
-) : Serializable
-
 data class FilterOrdinaryDrink(
     @SerializedName("drinks") val drinks: List<OrdinaryDrink>
 ) : Serializable
@@ -141,27 +130,6 @@ data class CocktailDrink(
             .map { "${it.second} ${it.first}" }
     }
 }
-
-data class FilterCocktailGlass(
-    @SerializedName("drinks") val drinks: List<CocktailGlassDrink>
-) : Serializable
-
-data class CocktailGlassDrink(
-    @SerializedName("strDrink") val strDrink: String,
-    @SerializedName("strDrinkThumb") val strDrinkThumb: String,
-    @SerializedName("idDrink") val idDrink: String
-) : Serializable
-
-data class ChampagneFlute(
-    @SerializedName("drinks") val drinks: List<ChampagneDrink>
-) : Serializable
-
-data class ChampagneDrink(
-    @SerializedName("strDrink") val strDrink: String,
-    @SerializedName("strDrinkThumb") val strDrinkThumb: String,
-    @SerializedName("idDrink") val idDrink: String
-) : Serializable
-
 data class Category(
     @SerializedName("drinks") val drinks: List<CategoryDrink>
 ) : Serializable
@@ -176,20 +144,4 @@ data class GlassCategoryList(
 
 data class GlassListCategoryDrink(
     @SerializedName("strGlass") val strGlass: String
-) : Serializable
-
-data class IngredientsCategoryList(
-    @SerializedName("drinks") val drinks: List<CategoryDrink>
-) : Serializable
-
-data class IngredientsListCategoryDrink(
-    @SerializedName("strIngredient1") val strIngredient1: String
-) : Serializable
-
-data class AlcoholCategoryList(
-    @SerializedName("drinks") val drinks: List<AlcoholDrink>
-) : Serializable
-
-data class AlcoholCategoryListDrink(
-    @SerializedName("strAlcoholic") val strAlcoholic: String
 ) : Serializable

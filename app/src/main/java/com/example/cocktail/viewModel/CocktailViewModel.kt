@@ -10,32 +10,16 @@ import kotlinx.coroutines.launch
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import com.example.cocktail.R
-import com.example.cocktail.data.dataclass.CategoryDrink
 import com.example.cocktail.data.dataclass.CocktailDrink
 import com.example.cocktail.data.dataclass.GlassListCategoryDrink
-import com.example.cocktail.data.dataclass.Ingredient
 import com.example.cocktail.data.dataclass.LookupFullCocktailDetailsById
 import com.example.cocktail.data.dataclass.OrdinaryDrink
 
 class CocktailViewModel(application: Application) : AndroidViewModel(application) {
     private val _cocktailList = MutableLiveData<List<CocktailDrink>>()
     val cocktailList: LiveData<List<CocktailDrink>> get() = _cocktailList
-
-    private val _ingredientList = MutableLiveData<List<Ingredient>?>()
-    val ingredientList: LiveData<List<Ingredient>?> get() = _ingredientList
-
-    private val _randomCocktail = MutableLiveData<CocktailDrink>()
-    val randomCocktail: LiveData<CocktailDrink> get() = _randomCocktail
-
-    private val _categories = MutableLiveData<List<CategoryDrink>>()
-    val categories: LiveData<List<CategoryDrink>> get() = _categories
-
     private val _glassCategories = MutableLiveData<List<GlassListCategoryDrink>>()
     val glassCategories: LiveData<List<GlassListCategoryDrink>> get() = _glassCategories
-
-    private val _ingredientCategories = MutableLiveData<List<CategoryDrink>>()
-    val ingredientCategories: LiveData<List<CategoryDrink>> get() = _ingredientCategories
-
     private val _filteredCocktails = MutableLiveData<List<CocktailDrink>>()
     val filteredCocktails: LiveData<List<CocktailDrink>> get() = _filteredCocktails
 
@@ -90,19 +74,22 @@ class CocktailViewModel(application: Application) : AndroidViewModel(application
     }
     fun fetchRandomCocktails() {
         viewModelScope.launch {
-            val cocktails = mutableListOf<CocktailDrink>()
-            repeat(10) {
+            try {
                 val response = apiService.lookupRandomCocktail()
-                if (response.isSuccessful) {
-                    response.body()?.drinks?.firstOrNull()?.let { cocktails.add(it) }
-                } else {
-                    Log.e(
-                        "CocktailViewModel",
-                        "Error fetching random cocktail: ${response.errorBody()?.string()}"
-                    )
+                if (response.isSuccessful && response.body() != null) {
+                    val allCocktails = response.body()?.drinks ?: emptyList()
+
+                    val cocktails = mutableListOf<CocktailDrink>()
+                    val limit = if (allCocktails.size > 10) 10 else allCocktails.size
+
+                    for (i in 0 until limit) {
+                        cocktails.add(allCocktails[i])
+                    }
+                    _randomCocktails.value = cocktails
                 }
+            } catch (e: Exception) {
+                Log.e("CocktailViewModel", "Error fetching random cocktails", e)
             }
-            _randomCocktails.value = cocktails
         }
     }
 
