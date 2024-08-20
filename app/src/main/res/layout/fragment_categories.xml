@@ -7,7 +7,7 @@
     android:background="@drawable/gradient_background"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".fragment.CategoriesFragment">
+    tools:context=".fragment.categories.CategoriesFragment">
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

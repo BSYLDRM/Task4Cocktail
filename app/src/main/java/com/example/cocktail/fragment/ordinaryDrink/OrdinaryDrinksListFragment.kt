@@ -1,33 +1,28 @@
 package com.example.cocktail.fragment.ordinaryDrink
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import com.example.cocktail.R
+import com.example.cocktail.data.adapter.AdapterFactory
 import com.example.cocktail.data.adapter.AdapterType
 import com.example.cocktail.data.adapter.GenericAdapter
 import com.example.cocktail.data.dataclass.OrdinaryDrink
 import com.example.cocktail.databinding.FragmentOrdinaryDrinksListBinding
+import com.example.cocktail.fragment.base.BaseListFragment
 import com.example.cocktail.viewModel.CocktailViewModel
 
-class OrdinaryDrinksListFragment : Fragment() {
-    private var _binding: FragmentOrdinaryDrinksListBinding? = null
-    private val binding get() = _binding!!
+class OrdinaryDrinksListFragment : BaseListFragment<FragmentOrdinaryDrinksListBinding>() {
 
-    private val cocktailViewModel: CocktailViewModel by activityViewModels()
+    override val viewModel: CocktailViewModel by activityViewModels()
     private lateinit var ordinaryDrinkAdapter: GenericAdapter
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentOrdinaryDrinksListBinding.inflate(inflater, container, false)
-        return binding.root
+    override fun inflateBinding(
+        inflater: LayoutInflater, container: ViewGroup?
+    ): FragmentOrdinaryDrinksListBinding {
+        return FragmentOrdinaryDrinksListBinding.inflate(inflater, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -38,17 +33,9 @@ class OrdinaryDrinksListFragment : Fragment() {
         setupHomeIcon()
     }
 
-    private fun setupHomeIcon() {
-        val homeIcon: View = binding.root.findViewById(R.id.homeIcon)
-        homeIcon.setOnClickListener {
-            findNavController().navigate(R.id.categoriesFragment)
-        }
-    }
-
     private fun setupRecyclerView() {
-        ordinaryDrinkAdapter = GenericAdapter(
-            itemList = mutableListOf(),
-            adapterType = AdapterType.ORDINARY_DRINK
+        ordinaryDrinkAdapter = AdapterFactory.createAdapter(
+            type = AdapterType.ORDINARY_DRINK
         ) { item ->
             if (item is OrdinaryDrink) {
                 val action =
@@ -58,18 +45,11 @@ class OrdinaryDrinksListFragment : Fragment() {
                 findNavController().navigate(action)
             }
         }
-        binding.recyclerRowOrdinaryDrinks.adapter = ordinaryDrinkAdapter
+        setupRecyclerView(ordinaryDrinkAdapter, binding.recyclerRowOrdinaryDrinks)
     }
 
     private fun observeViewModel() {
-        cocktailViewModel.ordinaryDrinks.observe(viewLifecycleOwner, Observer { ordinaryDrinks ->
-            ordinaryDrinkAdapter.updateItems(ordinaryDrinks)
-        })
-        cocktailViewModel.fetchOrdinaryDrinks()
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+        observeData(viewModel.ordinaryDrinks, ordinaryDrinkAdapter)
+        viewModel.fetchOrdinaryDrinks()
     }
 }

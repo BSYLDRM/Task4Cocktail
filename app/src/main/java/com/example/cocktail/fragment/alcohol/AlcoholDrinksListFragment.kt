@@ -1,67 +1,42 @@
 package com.example.cocktail.fragment.alcohol
+
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import com.example.cocktail.R
+import com.example.cocktail.data.adapter.AdapterFactory
 import com.example.cocktail.data.adapter.AdapterType
 import com.example.cocktail.data.adapter.GenericAdapter
 import com.example.cocktail.data.dataclass.CocktailDrink
 import com.example.cocktail.databinding.FragmentAlcoholDrinksListBinding
+import com.example.cocktail.fragment.base.BaseListFragment
 import com.example.cocktail.viewModel.CocktailViewModel
 
-
- class AlcoholDrinksListFragment : Fragment() {
-   private var _binding: FragmentAlcoholDrinksListBinding? = null
-    private val binding get() = _binding!!
-    private val cocktailViewModel: CocktailViewModel by activityViewModels()
+class AlcoholDrinksListFragment : BaseListFragment<FragmentAlcoholDrinksListBinding>() {
+    override val viewModel: CocktailViewModel by activityViewModels()
     private lateinit var alcoholAdapter: GenericAdapter
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentAlcoholDrinksListBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+    override fun inflateBinding(inflater: LayoutInflater, container: ViewGroup?) =
+        FragmentAlcoholDrinksListBinding.inflate(inflater, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupRecyclerView()
-        observeViewModel()
-        setupHomeIcon()
-    }
-    private fun setupHomeIcon(){
-        val homeIcon :View=binding.root.findViewById(R.id.homeIcon)
-        homeIcon.setOnClickListener {
-            findNavController().navigate(R.id.categoriesFragment)
-        }
-    }
 
-    private fun setupRecyclerView() {
-        alcoholAdapter = GenericAdapter(emptyList(), AdapterType.ALCOHOLIC) { item ->
+        alcoholAdapter = AdapterFactory.createAdapter(AdapterType.ALCOHOLIC) { item ->
             val cocktail = item as CocktailDrink
             val action =
-              AlcoholDrinksListFragmentDirections.actionAlcoholDrinksListFragmentToDetailFragment(
+                AlcoholDrinksListFragmentDirections.actionAlcoholDrinksListFragmentToDetailFragment(
                     cocktail.idDrink
                 )
             findNavController().navigate(action)
         }
-        binding.alcoholDrinksRecyclerView.adapter = alcoholAdapter
-    }
 
-    private fun observeViewModel() {
-        cocktailViewModel.filteredCocktails.observe(viewLifecycleOwner) { cocktails ->
-            alcoholAdapter.updateItems(cocktails)
-        }
-        cocktailViewModel.fetchAlcoholicCocktails()
-    }
+        setupRecyclerView(alcoholAdapter, binding.alcoholDrinksRecyclerView)
+        observeData(viewModel.filteredCocktails, alcoholAdapter)
+        setupHomeIcon()
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+        viewModel.fetchAlcoholicCocktails()
     }
 }
