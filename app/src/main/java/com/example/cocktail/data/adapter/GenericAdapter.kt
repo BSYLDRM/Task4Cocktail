@@ -3,14 +3,12 @@ package com.example.cocktail.data.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.cocktail.R
 import com.example.cocktail.data.dataclass.CocktailDrink
 import com.example.cocktail.data.dataclass.GlassListCategoryDrink
 import com.example.cocktail.data.dataclass.OrdinaryDrink
+import com.example.cocktail.databinding.RecyclerRowBinding
 
 class GenericAdapter(
     private var itemList: List<Any>,
@@ -18,15 +16,14 @@ class GenericAdapter(
     private val onItemClick: (Any) -> Unit
 ) : RecyclerView.Adapter<GenericAdapter.ViewHolder>() {
 
-    fun updateItems(newItems: List<Any>) {
-        itemList = newItems
-        notifyDataSetChanged()
-    }
+  fun updateItems(newItems: List<Any>) {
+      itemList = newItems
+      notifyDataSetChanged()
+  }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.recycler_row, parent, false)
-        return ViewHolder(view)
+        val binding = RecyclerRowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -38,12 +35,10 @@ class GenericAdapter(
         return itemList.size
     }
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val imageView: ImageView = itemView.findViewById(R.id.imageRecyclerRow)
-        private val textView: TextView = itemView.findViewById(R.id.textRecyclerRow)
+    inner class ViewHolder(private val binding: RecyclerRowBinding) : RecyclerView.ViewHolder(binding.root) {
 
         init {
-            itemView.setOnClickListener {
+            binding.root.setOnClickListener {
                 onItemClick(itemList[adapterPosition])
             }
         }
@@ -69,15 +64,15 @@ class GenericAdapter(
         }
 
         private fun bindTextAndImage(text: String, imageUrl: String) {
-            textView.text = text
-            Glide.with(itemView.context)
+            binding.textRecyclerRow.text = text
+            Glide.with(binding.root.context)
                 .load(imageUrl)
-                .into(imageView)
+                .into(binding.imageRecyclerRow)
         }
 
         private fun bindText(text: String) {
-            textView.text = text
-            imageView.visibility = View.GONE
+            binding.textRecyclerRow.text = text
+            binding.imageRecyclerRow.visibility = View.GONE
         }
     }
 }
