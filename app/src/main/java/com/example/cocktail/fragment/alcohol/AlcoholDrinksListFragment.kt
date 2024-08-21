@@ -35,7 +35,6 @@ class AlcoholDrinksListFragment : BaseListFragment<FragmentAlcoholDrinksListBind
 
         setupRecyclerView(alcoholAdapter, binding.alcoholDrinksRecyclerView)
         observeData(viewModel.filteredCocktails, alcoholAdapter)
-        setupHomeIcon()
 
         viewModel.fetchAlcoholicCocktails()
     }

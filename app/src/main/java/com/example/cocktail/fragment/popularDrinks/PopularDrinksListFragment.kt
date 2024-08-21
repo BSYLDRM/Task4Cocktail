@@ -29,7 +29,6 @@ class PopularDrinksListFragment : BaseListFragment<FragmentPopularDrinksBinding>
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
         observeViewModel()
-        setupHomeIcon()
     }
 
     private fun setupRecyclerView() {

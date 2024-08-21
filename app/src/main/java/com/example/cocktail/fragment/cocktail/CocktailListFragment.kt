@@ -33,7 +33,6 @@ class FragmentCocktailList : BaseListFragment<FragmentCocktailListBinding>() {
         setupRecyclerView()
         observeViewModel()
         setupSearchFunctionality()
-        setupHomeIcon()
     }
 
     private fun setupRecyclerView() {

@@ -30,7 +30,6 @@ class OrdinaryDrinksListFragment : BaseListFragment<FragmentOrdinaryDrinksListBi
 
         setupRecyclerView()
         observeViewModel()
-        setupHomeIcon()
     }
 
     private fun setupRecyclerView() {

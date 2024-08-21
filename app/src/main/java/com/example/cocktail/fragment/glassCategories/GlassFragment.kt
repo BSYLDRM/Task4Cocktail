@@ -28,7 +28,6 @@ class GlassFragment : BaseListFragment<FragmentGlassBinding>() {
 
         setupRecyclerView()
         observeViewModel()
-        setupHomeIcon()
     }
 
     private fun setupRecyclerView() {

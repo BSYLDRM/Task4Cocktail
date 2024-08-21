@@ -28,6 +28,11 @@ abstract class BaseListFragment<T : ViewBinding> : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setupHomeIcon()
+    }
+
     abstract fun inflateBinding(inflater: LayoutInflater, container: ViewGroup?): T
 
     override fun onDestroyView() {
@@ -35,7 +40,7 @@ abstract class BaseListFragment<T : ViewBinding> : Fragment() {
         _binding = null
     }
 
-    protected open fun setupHomeIcon() {
+   private  fun setupHomeIcon() {
         val homeIcon: View = binding.root.findViewById(R.id.homeIcon)
         homeIcon.setOnClickListener {
             findNavController().navigate(R.id.categoriesFragment)
