@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">Cocktail</string>
+    <string name="hint">Search</string>
+    <string name="main_object_cock">Cocktails</string>
+    <string name="main_object_alcohol">Alcohol Drinks</string>
+    <string name="main_object_original">Original Drinks</string>
+    <string name="main_object_popular">Popular Drinks</string>
+    <string name="main_object_glass">Type Of Glasses </string>
+    <string name="cocktail_url">https://www.thecocktaildb.com/images/media/drink/vrwquq1478252802.jpg</string>
+    <string name="alcohol_url">https://www.thecocktaildb.com/images/media/drink/utypqq1441554367.jpg</string>
+    <string name="original_url">https://www.thecocktaildb.com/images/media/drink/iwml9t1492976255.jpg</string>
+    <string name="popular_url">https://www.thecocktaildb.com/images/media/drink/yrtypx1473344625.jpg</string>
+    <string name="glass_url">https://www.thecocktaildb.com/images/media/drink/qyyvtu1468878544.jpg</string>
+    <string name="view_list">list</string>
+    <string name="view_alcohol">"Alcoholic"</string>
+    <string name="view_non_alcoholic">Non_Alcoholic</string>
+    <string name="view_ordinary">Ordinary_Drink</string>
 </resources>
